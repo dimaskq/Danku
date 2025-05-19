@@ -1,0 +1,127 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: sticky;
+  z-index: 1200;
+  transition: background-color 0.5s ease;
+}
+
+.fullscreen-menu li a {
+  font-size: 5rem;
+}
+
+.header__logo {
+  font-family: "Kosolapa";
+  font-size: 5rem;
+  color: #000;
+}
+
+.burger-menu:not(.open) .hamburger-react:hover > div {
+  transform: rotate(180deg) !important;
+}
+
+.burger-menu.open:hover .hamburger-react > div {
+  transform: none !important;
+}
+
+.burger-menu.open .hamburger-react:hover {
+  transform: rotate(180deg) !important;
+}
+
+.hamburger-react div {
+  background-color: #000;
+  height: 2px !important;
+}
+
+.burger-menu.open ~ .header {
+  background-color: #ffe4d2;
+}
+
+.burger-menu {
+  z-index: 1101;
+  position: relative;
+  color: #000;
+  margin-left: -10%;
+}
+
+.fullscreen-menu {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1280px;
+  margin: 0 auto;
+  height: calc(100vh - 100px);
+  background-color: #ffe4d2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  z-index: 1100;
+}
+
+.fullscreen-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.fullscreen-menu ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.fullscreen-menu li {
+  font-size: 2rem;
+}
+
+.fullscreen-menu a {
+  text-decoration: none;
+  color: #111;
+}
+
+.backdrop {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1099;
+}
+
+.header__gear_container {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.6s ease;
+  color: #000;
+}
+
+.header__gear_container:hover {
+  transform: rotate(360deg);
+}
+
+.domino-link {
+  cursor: pointer;
+  user-select: none;
+}
+
+.domino-link span {
+  display: inline-block;
+  transition: transform 300ms ease;
+  transform-origin: bottom left;
+}
+
+.domino-link span.fall {
+  transform: rotate(15deg);
+}
+
+.domino-link span.rise {
+  transform: rotate(0deg);
+}
