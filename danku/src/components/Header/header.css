@@ -3,9 +3,10 @@
   justify-content: space-between;
   height: 100px;
   align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
+
+  margin: 0 5%;
   position: sticky;
+  top: 0;
   z-index: 1200;
   transition: background-color 0.5s ease;
 }
@@ -38,7 +39,7 @@
 }
 
 .burger-menu.open ~ .header {
-  background-color: #ffe4d2;
+  background-color: #fdf0e7;
 }
 
 .burger-menu {
@@ -56,7 +57,7 @@
   width: 1280px;
   margin: 0 auto;
   height: calc(100vh - 100px);
-  background-color: #ffe4d2;
+  background-color: #fdf0e7;
   display: flex;
   justify-content: center;
   align-items: center;

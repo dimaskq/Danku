@@ -1,0 +1,43 @@
+"use client";
+import "./homePage.css";
+const Welcome: React.FC = () => {
+  return (
+    <div className="welcome">
+      <h1 className="welcome__bg">Study</h1>
+
+      <div className="welcome__content">
+        <h2 className="welcome__text">
+          <span>
+            Welcome to Danku
+            <div className="welcome__text_smile">
+              <img src="/images/smile.png" alt="smile" />,
+            </div>
+          </span>
+
+          <span className="welcome__line">
+            <span className="welcome__highlight">Your</span>
+            <span className="welcome__desc-inline">
+              <img
+                className="welcome__desc_arrow welcome__desc_arrowTop"
+                src="/icons/arrow.svg"
+                alt="image of arrow"
+              />
+              <img
+                className="welcome__desc_arrow welcome__desc_arrowBottom"
+                src="/icons/arrow.svg"
+                alt="image of arrow"
+              />
+              <div>(</div> Hi! I’m Kravchenko Dmytro, <br />
+              Fullstack Developer from Ukraine.<div>)</div>
+            </span>
+          </span>
+
+          <span>guru in tests</span>
+        </h2>
+        <div className="welcome__bottom">Study Mentor</div>
+      </div>
+    </div>
+  );
+};
+
+export default Welcome;

@@ -1,0 +1,146 @@
+.welcome {
+  max-width: 1280px;
+  margin: 10% auto 100% auto;
+  position: relative;
+  font-family: "Kosolapa";
+  color: #000;
+}
+
+.welcome__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+}
+
+.welcome__bg {
+  position: absolute;
+  z-index: 1;
+  bottom: -90%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 50rem;
+  font-weight: 100;
+  color: #f89797;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.welcome__text {
+  text-align: center;
+}
+
+.welcome__text span {
+  display: block;
+  line-height: 85%;
+  font-size: clamp(3.5rem, 10vw, 13rem);
+  font-weight: 100;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.welcome__line {
+  display: flex !important;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.welcome__highlight {
+  font-size: clamp(3rem, 10vw, 13rem);
+  font-weight: 100;
+  line-height: 0.85;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.welcome__desc-inline {
+  font-family: Arial, sans-serif;
+  font-size: clamp(0.6rem, 1.5vw, 0.7rem) !important;
+  max-width: 100%;
+  color: #000000;
+  line-height: 1.4 !important;
+  display: flex !important;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.welcome__desc_arrow {
+  position: absolute;
+  height: auto;
+}
+
+.welcome__desc_arrowTop {
+  top: -55%;
+  left: 40%;
+  width: 50px;
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.welcome__desc_arrowBottom {
+  width: 50px;
+  bottom: -50%;
+  right: 16%;
+  transform: translateX(-50%) rotate(-110deg);
+}
+
+.welcome__desc-inline div {
+  color: #646464 !important;
+  font-size: clamp(1.5rem, 5vw, 3rem) !important;
+  font-weight: 100 !important;
+  white-space: nowrap;
+}
+
+.welcome__text_smile {
+  position: relative;
+  display: inline-block;
+}
+
+.welcome__text_smile img {
+  position: absolute;
+  top: 100%;
+  left: -300%;
+  width: 150px;
+  animation: smile-rotate 3s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes smile-rotate {
+  0% {
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .welcome__desc-inline {
+    display: none !important;
+  }
+
+  .welcome__text_smile img {
+    width: 100px;
+    left: -800%;
+  }
+}
+
+.welcome__bottom {
+  margin: 100px 0 0 0;
+  font-weight: 100 !important;
+  letter-spacing: 2px;
+  font-size: clamp(2rem, 10vw, 3rem);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
