@@ -1,10 +1,10 @@
 "use client";
 import "./homePage.css";
+import { ParallaxTitle } from "./ParallaxTitle";
 const Welcome: React.FC = () => {
   return (
     <div className="welcome">
-      <h1 className="welcome__bg">Study</h1>
-
+      <ParallaxTitle />
       <div className="welcome__content">
         <h2 className="welcome__text">
           <span>
@@ -34,7 +34,6 @@ const Welcome: React.FC = () => {
 
           <span>guru in tests</span>
         </h2>
-        <div className="welcome__bottom">Study Mentor</div>
       </div>
     </div>
   );

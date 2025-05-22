@@ -54,7 +54,7 @@
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1280px;
+  width: 100%;
   margin: 0 auto;
   height: calc(100vh - 100px);
   background-color: #fdf0e7;
