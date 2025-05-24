@@ -1,0 +1,135 @@
+.siteMap {
+  background-color: #f9e0ba;
+}
+
+.siteMap__container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.point {
+  transition: all 0.3s ease;
+}
+
+.map-container {
+  scroll-margin-top: 100px;
+  margin: 0 0 20% 0;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 100px auto 20% auto;
+  position: relative;
+  aspect-ratio: 1 / 2;
+}
+
+.map-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.pushable {
+  background: #f1f1f1;
+  border: none;
+  border-radius: 9999px;
+  width: 140px;
+  height: 50px;
+  cursor: pointer;
+  outline: none;
+
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1),
+    -4px -4px 10px rgba(255, 255, 255, 0.7);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pushable:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.15),
+    -4px -4px 10px rgba(255, 255, 255, 0.8);
+}
+
+.pushable:active {
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.15),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+.front {
+  pointer-events: none;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  line-height: 50px;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: gold;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 600ms ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.5);
+  }
+}
+
+.particle-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.background-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.bg-icon {
+  position: absolute;
+  color: #000 !important;
+  animation: float 12s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

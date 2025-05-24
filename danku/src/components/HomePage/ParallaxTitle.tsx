@@ -16,7 +16,7 @@ export const ParallaxTitle = () => {
   }, []);
 
   return (
-    <h1
+    <p
       className="welcome__bg"
       style={{
         transform: `translateY(${offsetY}px)`,
@@ -24,6 +24,6 @@ export const ParallaxTitle = () => {
       }}
     >
       Study
-    </h1>
+    </p>
   );
 };

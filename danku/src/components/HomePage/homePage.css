@@ -1,6 +1,6 @@
 .welcome {
   max-width: 1280px;
-  margin: 10% auto 100% auto;
+  margin: 10% auto 40% auto;
   position: relative;
   font-family: "Bebas Neue";
   color: #000;
@@ -21,7 +21,7 @@
   top: 80%;
   left: 50%;
   transform: translateX(-50%) !important;
-
+  font-family: "Kosolapa";
   font-size: 30vw;
 
   font-weight: 100;
@@ -62,7 +62,7 @@
 }
 
 .welcome__desc-inline {
-  font-family: Arial, sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: clamp(0.6rem, 1.5vw, 0.7rem) !important;
   max-width: 100%;
   color: #000000;
