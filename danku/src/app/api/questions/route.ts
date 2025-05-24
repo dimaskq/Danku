@@ -26,30 +26,33 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  console.log("📥 POST /api/questions викликано");
   try {
     const data = await request.json();
-    console.log("📦 Отримано дані з запиту:", data);
 
     const client = await clientPromise;
     const db = client.db("testdb");
 
-    console.log("📝 Вставляємо питання у базу...");
-    const result = await db.collection("questions").insertOne(data);
-
-    console.log("✅ Питання додано з ID:", result.insertedId);
-    return NextResponse.json({
-      message: "Question added",
-      id: result.insertedId,
-    });
+    if (Array.isArray(data)) {
+      const result = await db.collection("questions").insertMany(data);
+      return NextResponse.json({
+        message: "Questions added",
+        insertedCount: result.insertedCount,
+        insertedIds: result.insertedIds,
+      });
+    } else {
+      const result = await db.collection("questions").insertOne(data);
+      return NextResponse.json({
+        message: "Question added",
+        id: result.insertedId,
+      });
+    }
   } catch (error: any) {
-    console.error(
-      "❌ Помилка в POST /api/questions:",
-      error.message,
-      error.stack
-    );
+    console.error("POST /questions error:", error);
     return NextResponse.json(
-      { error: "Failed to add question", details: error.message },
+      {
+        error: "Failed to add question",
+        details: error.message || error.toString(),
+      },
       { status: 500 }
     );
   }
