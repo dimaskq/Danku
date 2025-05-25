@@ -1,6 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 
+const validClasses = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  "A1",
+  "A2",
+  "B1",
+  "B2",
+  "C1",
+  "C2",
+];
+
 export async function GET(request: NextRequest) {
   console.log("📥 GET /api/questions викликано");
   try {
@@ -12,13 +32,22 @@ export async function GET(request: NextRequest) {
 
     let query = {};
     if (rawClass !== null) {
+      // Перевірка, чи rawClass відповідає допустимим класам
+      // Якщо це число, перетворимо, інакше залишаємо рядком
+      let classValue: number | string;
       const classNumber = Number(rawClass);
-      if (Number.isNaN(classNumber) || classNumber < 1 || classNumber > 11) {
+
+      if (!Number.isNaN(classNumber) && validClasses.includes(classNumber)) {
+        classValue = classNumber;
+      } else if (validClasses.includes(rawClass)) {
+        classValue = rawClass;
+      } else {
         console.log(`❌ Невалідний клас: ${rawClass}`);
         return NextResponse.json({ error: "Invalid class" }, { status: 400 });
       }
-      query = { class: classNumber };
-      console.log(`📂 Отримуємо питання для класу ${classNumber}`);
+
+      query = { class: classValue };
+      console.log(`📂 Отримуємо питання для класу ${classValue}`);
     } else {
       console.log("📂 Отримуємо всі питання (без фільтра класу)");
     }
@@ -39,6 +68,7 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
@@ -47,11 +77,8 @@ export async function POST(request: NextRequest) {
 
     console.log("📥 POST /api/questions викликано");
 
-    // Валідація функція
-    const isValidClass = (cls: any) =>
-      typeof cls === "number" && cls >= 1 && cls <= 11;
+    const isValidClass = (cls: any) => validClasses.includes(cls);
 
-    // Якщо масив питань
     if (Array.isArray(data)) {
       const invalidItems = data.filter((q) => !isValidClass(q.class));
       if (invalidItems.length > 0) {
@@ -74,7 +101,6 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Якщо одне питання
     if (!isValidClass(data.class)) {
       console.log(`❌ Невалідний клас: ${data.class}`);
       return NextResponse.json(
