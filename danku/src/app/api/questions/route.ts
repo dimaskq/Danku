@@ -5,7 +5,7 @@ export async function GET(request: NextRequest) {
   console.log("📥 GET /api/questions викликано");
   try {
     const client = await clientPromise;
-    const db = client.db("testdb");
+    const db = client.db("danku");
 
     const { searchParams } = new URL(request.url);
     const rawClass = searchParams.get("class");
