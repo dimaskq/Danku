@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
     const client = await clientPromise;
-    const db = client.db("testdb");
+    const db = client.db("danku");
 
     console.log("📥 POST /api/questions викликано");
 
