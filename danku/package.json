@@ -23,6 +23,7 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@types/next": "^8.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
