@@ -1,0 +1,135 @@
+.register {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  transition: box-shadow 0.3s ease;
+}
+
+.register:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.register__title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+.register__field {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.register__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fafafa;
+  color: #222;
+  box-sizing: border-box;
+}
+
+.register__input::placeholder {
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.register__input:focus {
+  border-color: #3b82f6; /* гарний синій */
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+  background-color: #fff;
+  color: #111;
+}
+
+.register__input:focus::placeholder {
+  color: transparent;
+}
+
+.register__error {
+  color: #e53e3e; /* червоний відтінок */
+  font-size: 0.875rem;
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  user-select: none;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.register__submit {
+  width: 100%;
+  padding: 0.85rem 0;
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  user-select: none;
+}
+
+.register__submit:hover {
+  background: #2563eb;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+}
+
+.register__submit:active {
+  background: #1e40af;
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.8);
+  transform: translateY(1px);
+  transition: background-color 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register__login-redirect {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  user-select: none;
+}
+
+.register__login-redirect p {
+  margin-bottom: 0.5rem;
+}
+
+.register__login-button {
+  background: transparent;
+  border: none;
+  color: #000000;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.register__login-button:hover {
+  color: #3b82f6;
+}

@@ -1,10 +1,4 @@
-interface Test {
-  _id: string;
-  text: string;
-  class: number;
-  topic: string;
-  answers: { text: string; isCorrect: boolean }[];
-}
+import { Test } from "@/types/test";
 
 interface TestCardProps {
   test: Test;
@@ -21,29 +15,18 @@ export default function TestCard({
 }: TestCardProps) {
   return (
     <div className="test-card">
-      <h2 className="test-card-title">{test.text}</h2>
+      <h3 className="test-card-title">{test.text}</h3>
       <ul className="test-card-answers">
         {test.answers.map((answer, index) => (
-          <li
-            key={index}
-            className={`test-card-answer ${
-              isSubmitted
-                ? answer.isCorrect
-                  ? "correct"
-                  : selectedAnswer === index
-                  ? "incorrect"
-                  : ""
-                : ""
-            }`}
-          >
+          <li key={index} className="test-card-answer">
             <label className="answer-label">
               <input
                 type="radio"
-                name={`test-${test._id}`}
+                className="custom-radio"
+                name={`answer-${test._id}`}
                 checked={selectedAnswer === index}
                 onChange={() => onAnswerSelect(index)}
                 disabled={isSubmitted}
-                className="custom-radio"
               />
               <span className="custom-radio-visual"></span>
               <span className="answer-text">{answer.text}</span>

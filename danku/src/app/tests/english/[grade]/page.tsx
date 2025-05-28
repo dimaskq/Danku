@@ -7,37 +7,25 @@ interface Props {
   params: Promise<{ grade: string }>;
 }
 
-const validMathGrades = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "11",
-];
+const validEnglishGrades = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
 export async function generateStaticParams() {
-  return validMathGrades.map((grade) => ({ grade }));
+  return validEnglishGrades.map((grade) => ({ grade }));
 }
 
-export default async function MathTestPage({ params }: Props) {
+export default async function EnglishTestPage({ params }: Props) {
   try {
     const { grade } = await params;
 
-    console.log(`MathTestPage accessed with grade: ${grade}`); // Debug log
+    console.log(`EnglishTestPage accessed with grade: ${grade}`); // Debug log
 
-    if (!validMathGrades.includes(grade)) {
+    if (!validEnglishGrades.includes(grade)) {
       return (
-        <ErrorMessage title="Помилка" message={`Невалідний клас: ${grade}`} />
+        <ErrorMessage title="Помилка" message={`Невалідний рівень: ${grade}`} />
       );
     }
 
-    console.log(`📥 Завантаження тестів для класу ${grade}`);
+    console.log(`📥 Завантаження тестів для рівня ${grade}`);
 
     const res = await fetch(
       `http://localhost:3000/api/questions?class=${grade}`,
@@ -51,7 +39,7 @@ export default async function MathTestPage({ params }: Props) {
       console.error(`❌ Помилка API: ${errorText}`);
       return (
         <ErrorMessage
-          title={`Тести з математики для ${grade} класу`}
+          title={`Тести з англійської для рівня ${grade}`}
           message={`Помилка завантаження тестів: ${res.status} ${res.statusText}`}
         />
       );
@@ -63,8 +51,8 @@ export default async function MathTestPage({ params }: Props) {
     if (tests.length === 0) {
       return (
         <EmptyTestsMessage
-          title={`Тести з математики для ${grade} класу`}
-          message={`Тести для ${grade} класу відсутні.`}
+          title={`Тести з англійської для рівня ${grade}`}
+          message={`Тести для рівня ${grade} відсутні.`}
         />
       );
     }

@@ -7,17 +7,10 @@ import GradeTestHeader from "./GradeTestHeader";
 import TestCard from "./TestCard";
 import ErrorMessage from "./ErrorMessage";
 import EmptyTestsMessage from "./EmptyTestsMessage";
-
-interface Test {
-  _id: string;
-  text: string;
-  class: number;
-  topic: string;
-  answers: { text: string; isCorrect: boolean }[];
-}
+import { Test } from "@/types/test";
 
 interface GradeTestContainerProps {
-  grade: string;
+  grade: string; // "1" to "11" or "A1" to "C2"
 }
 
 export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
@@ -33,15 +26,20 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
   useEffect(() => {
     const fetchTests = async () => {
       try {
-        const res = await fetch(`/api/questions?class=${grade}`, {
-          cache: "no-store",
-        });
+        console.log(`Fetching tests for grade: ${grade}`); // Debug log
+        const res = await fetch(
+          `http://localhost:3000/api/questions?class=${grade}`,
+          {
+            cache: "no-store",
+          }
+        );
 
         if (!res.ok) {
           throw new Error(`Помилка: ${res.status} ${res.statusText}`);
         }
 
         const data: Test[] = await res.json();
+        console.log(`Тести для class=${grade}:`, data); // Debug log
         setTests(data);
         setLoading(false);
       } catch (err: any) {
@@ -64,8 +62,6 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
     if (!tests) return;
 
     setSubmissionLoading(true);
-
-    // Simulate processing delay (adjust or remove based on API response time)
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     let correct = 0;
@@ -76,17 +72,13 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
       if (selectedIndex !== null && test.answers[selectedIndex]?.isCorrect) {
         correct += 1;
       } else if (selectedIndex !== null) {
-        // Add topic of incorrect answer (ensure no duplicates)
         if (!wrongTopics.includes(test.topic)) {
           wrongTopics.push(test.topic);
         }
       }
     });
 
-    // Encode topics to handle special characters
     const encodedTopics = encodeURIComponent(wrongTopics.join(","));
-
-    // Navigate to results page with query parameters
     const query = new URLSearchParams({
       correctCount: correct.toString(),
       total: tests.length.toString(),
@@ -94,7 +86,21 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
       grade,
     }).toString();
 
-    router.push(`/tests/math/${grade}/results?${query}`);
+    const subject = isNaN(parseInt(grade)) ? "english" : "math";
+    router.push(`/tests/${subject}/${grade}/results?${query}`);
+
+    await fetch("/api/user/completed-tests", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        testId: grade,
+        testTitle: `Тести для ${grade} класу`,
+        bestScore: correct,
+      }),
+    });
   };
 
   if (loading) {
@@ -115,10 +121,14 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
   }
 
   if (!tests || tests.length === 0) {
+    const subject = isNaN(parseInt(grade)) ? "англійської" : "математики";
+    const gradeDisplay = isNaN(parseInt(grade))
+      ? `рівня ${grade}`
+      : `${grade} класу`;
     return (
       <EmptyTestsMessage
-        title={`Тести з математики для ${grade} класу`}
-        message={`Тести для ${grade} класу відсутні.`}
+        title={`Тести з ${subject} для ${gradeDisplay}`}
+        message={`Тести для ${gradeDisplay} відсутні.`}
       />
     );
   }

@@ -1,5 +1,5 @@
 import { Slant as Hamburger } from "hamburger-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./header.css";
 
 interface DominoLinkProps {
@@ -38,6 +38,16 @@ export const DominoLink: React.FC<DominoLinkProps> = ({ href, text }) => {
 
 export function BurgerMenu() {
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("no-scroll", "menu-open");
+    } else {
+      document.body.classList.remove("no-scroll", "menu-open");
+    }
+
+    return () => document.body.classList.remove("no-scroll", "menu-open");
+  }, [isOpen]);
 
   return (
     <>

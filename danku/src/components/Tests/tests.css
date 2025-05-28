@@ -288,6 +288,9 @@
   padding: 16px;
 }
 
+.tests__header {
+  color: #000;
+}
 .test-container__list {
   margin-top: 24px;
 }

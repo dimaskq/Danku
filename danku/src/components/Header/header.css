@@ -3,12 +3,18 @@
   justify-content: space-between;
   height: 100px;
   align-items: center;
-
-  margin: 0 5%;
+  padding: 0 5%;
   position: sticky;
   top: 0;
-  z-index: 1200;
+  z-index: 2000;
   transition: background-color 0.5s ease;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+body.menu-open .header {
+  background-color: #f3f4f6 !important;
 }
 
 .fullscreen-menu li a {
@@ -39,7 +45,7 @@
 }
 
 .burger-menu.open ~ .header {
-  background-color: #fdf0e7;
+  background-color: #f3f4f6;
 }
 
 .burger-menu {
@@ -57,7 +63,7 @@
   width: 100%;
   margin: 0 auto;
   height: calc(100vh - 100px);
-  background-color: #fff7f1;
+  background-color: #f3f4f6;
   display: flex;
   justify-content: center;
   align-items: center;
