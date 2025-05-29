@@ -1,11 +1,10 @@
-import SiteMap from "./SiteMap/SiteMap";
 import Welcome from "./Welcome";
-
+import SiteBook from "./SiteMap/SiteBook";
 const Main: React.FC = () => {
   return (
     <>
       <Welcome />
-      <SiteMap />
+      <SiteBook />
     </>
   );
 };

@@ -23,6 +23,14 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
   }>({});
   const router = useRouter();
 
+  const allAnswered = tests
+    ? tests.every(
+        (test) =>
+          selectedAnswers[test._id] !== null &&
+          selectedAnswers[test._id] !== undefined
+      )
+    : false;
+
   useEffect(() => {
     const fetchTests = async () => {
       try {
@@ -152,9 +160,11 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
       <div className="test-container__actions">
         <button
           onClick={handleSubmit}
-          disabled={submissionLoading}
+          disabled={submissionLoading || !allAnswered}
           className={`test-container__submit-button ${
-            submissionLoading ? "test-container__submit-button--disabled" : ""
+            submissionLoading || !allAnswered
+              ? "test-container__submit-button--disabled"
+              : ""
           }`}
         >
           {submissionLoading ? "⏳ Обробка..." : "ЗДАТИ"}

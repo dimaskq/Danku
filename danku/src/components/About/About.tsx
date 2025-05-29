@@ -10,19 +10,21 @@ const About: React.FC = () => {
           <Image
             src="/images/profile-photo.jpg"
             alt="Кравченко Дмитро Олексійович"
-            width={200}
-            height={200}
             className="about__photo"
           />
         </div>
 
         <div className="about__info">
-          <h1 className="about__name">Кравченко Дмитро Олексійович</h1>
-          <p className="about__text">Студент 4 курсу</p>
+          <h1 className="about__name">Дипломна робота</h1>
           <p className="about__text">
-            Павлоградський коледж Національного ТУ «Дніпровська політехніка»
+            На тему: "Веб застосунок для покращення знань користувача з
+            математики і англійської мови" <br /> Студента 4 курсу групи Кі-1-21
+            <br />
+            Кравченка Дмитра
           </p>
-          <p className="about__text">Це мій дипломний проект</p>
+          <p className="about__text">
+            ВСП Павлоградський фаховий коледж НТУ ДП
+          </p>
         </div>
       </div>
     </main>

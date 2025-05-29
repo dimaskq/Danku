@@ -22,5 +22,5 @@ export const LenisProvider = () => {
     };
   }, []);
 
-  return null; // нічого не рендерить
+  return null;
 };
