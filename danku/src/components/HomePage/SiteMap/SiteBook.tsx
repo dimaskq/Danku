@@ -22,6 +22,10 @@ const SiteBook: React.FC = () => {
           href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png"
           rel="apple-touch-icon"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap&subset=cyrillic"
+          rel="stylesheet"
+        />
       </Head>
       <div className="scene">
         <div className="book-wrap">
@@ -129,10 +133,10 @@ const SiteBook: React.FC = () => {
       />
       <Script id="webfont-loader" strategy="afterInteractive">
         {`WebFont.load({
-          google: {
-            families: ["PT Sans:400,400italic,700,700italic"]
-          }
-        });`}
+    google: {
+      families: ["PT Sans:400,400italic,700,700italic:cyrillic"]
+    }
+  });`}
       </Script>
       <Script id="touch-detection" strategy="afterInteractive">
         {`!(function (o, c) {
