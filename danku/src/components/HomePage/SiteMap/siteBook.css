@@ -145,6 +145,9 @@ html.w-mod-touch * {
   perspective: 4000px;
   -webkit-perspective-origin: 50% 0%;
   perspective-origin: 50% 0%;
+  background-image: url("/images/book_bg.jpg");
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #f3f4f6 10%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #f3f4f6 10%);
 }
 
 .book-wrap {
