@@ -9,6 +9,8 @@ interface Props {
 
 const validEnglishGrades = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 export async function generateStaticParams() {
   return validEnglishGrades.map((grade) => ({ grade }));
 }
@@ -27,12 +29,9 @@ export default async function EnglishTestPage({ params }: Props) {
 
     console.log(`📥 Завантаження тестів для рівня ${grade}`);
 
-    const res = await fetch(
-      `http://localhost:3000/api/questions?class=${grade}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`${baseUrl}/api/questions?class=${grade}`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       const errorText = await res.text();

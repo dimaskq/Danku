@@ -21,6 +21,8 @@ const validMathGrades = [
   "11",
 ];
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 export async function generateStaticParams() {
   return validMathGrades.map((grade) => ({ grade }));
 }
@@ -29,7 +31,7 @@ export default async function MathTestPage({ params }: Props) {
   try {
     const { grade } = await params;
 
-    console.log(`MathTestPage accessed with grade: ${grade}`); // Debug log
+    console.log(`MathTestPage accessed with grade: ${grade}`);
 
     if (!validMathGrades.includes(grade)) {
       return (
@@ -39,12 +41,9 @@ export default async function MathTestPage({ params }: Props) {
 
     console.log(`📥 Завантаження тестів для класу ${grade}`);
 
-    const res = await fetch(
-      `http://localhost:3000/api/questions?class=${grade}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`${baseUrl}/api/questions?class=${grade}`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       const errorText = await res.text();
@@ -58,7 +57,7 @@ export default async function MathTestPage({ params }: Props) {
     }
 
     const tests: Test[] = await res.json();
-    console.log(`Тести для class=${grade}:`, tests); // Debug log
+    console.log(`Тести для class=${grade}:`, tests);
 
     if (tests.length === 0) {
       return (

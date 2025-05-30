@@ -32,8 +32,6 @@ export async function GET(request: NextRequest) {
 
     let query = {};
     if (rawClass !== null) {
-      // Перевірка, чи rawClass відповідає допустимим класам
-      // Якщо це число, перетворимо, інакше залишаємо рядком
       let classValue: number | string;
       const classNumber = Number(rawClass);
 
