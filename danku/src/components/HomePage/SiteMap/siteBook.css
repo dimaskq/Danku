@@ -642,6 +642,10 @@ html.w-mod-touch * {
 }
 
 @media (max-width: 767px) {
+  .scene {
+    display: none;
+  }
+
   .book-wrap {
     width: 80vw;
     margin-bottom: 2vw;

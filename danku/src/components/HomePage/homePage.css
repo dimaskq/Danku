@@ -39,7 +39,7 @@
 .welcome__text span {
   display: block;
   line-height: 85%;
-  font-size: clamp(3.5rem, 10vw, 10rem);
+  font-size: clamp(3rem, 10vw, 10rem);
   font-weight: 100;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -133,7 +133,8 @@
   }
 
   .welcome__text_smile img {
-    width: 100px;
-    left: -800%;
+    width: 300px;
+    left: -2500%;
+    top: 600%;
   }
 }
