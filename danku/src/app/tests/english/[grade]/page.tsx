@@ -9,7 +9,7 @@ interface Props {
 
 const validEnglishGrades = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
 export async function generateStaticParams() {
   return validEnglishGrades.map((grade) => ({ grade }));

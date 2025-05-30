@@ -21,7 +21,7 @@ const validMathGrades = [
   "11",
 ];
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
 export async function generateStaticParams() {
   return validMathGrades.map((grade) => ({ grade }));

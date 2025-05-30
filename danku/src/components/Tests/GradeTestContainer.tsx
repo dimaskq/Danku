@@ -34,13 +34,10 @@ export default function GradeTestContainer({ grade }: GradeTestContainerProps) {
   useEffect(() => {
     const fetchTests = async () => {
       try {
-        console.log(`Fetching tests for grade: ${grade}`); // Debug log
-        const res = await fetch(
-          `http://localhost:3000/api/questions?class=${grade}`,
-          {
-            cache: "no-store",
-          }
-        );
+        console.log(`Fetching tests for grade: ${grade}`);
+        const res = await fetch(`/api/questions?class=${grade}`, {
+          cache: "no-store",
+        });
 
         if (!res.ok) {
           throw new Error(`Помилка: ${res.status} ${res.statusText}`);
