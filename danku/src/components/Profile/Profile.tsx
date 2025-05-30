@@ -1,13 +1,9 @@
-"use client";
-
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import jwt from "jsonwebtoken";
 import { connectToDB } from "@/lib/db";
 import { User } from "@/models/user";
-import "./profile.css";
-import { Suspense } from "react";
-import ClientProfileTests from "./ClientProfileTests";
+import ClientProfile from "./ClientProfile";
 import type { UserType } from "@/models/user";
 
 export default async function Profile() {
@@ -29,44 +25,9 @@ export default async function Profile() {
 
   await connectToDB();
 
-  const user = await User.findById<UserType>(userId).lean();
+  const user = (await User.findById(userId).lean()) as UserType | null;
 
   if (!user) return redirect("/login");
 
-  return (
-    <main className="profile">
-      <h1 className="profile__title">👤 Профіль</h1>
-      <div className="profile__info-block">
-        <p>
-          <strong>Ім’я:</strong> {user.username}
-        </p>
-        <p>
-          <strong>Email:</strong> {user.email}
-        </p>
-      </div>
-
-      <Suspense fallback={<p>Завантаження тестів...</p>}>
-        <ClientProfileTests />
-      </Suspense>
-
-      <form
-        action="/api/auth/logout"
-        method="POST"
-        className="profile__logout-form"
-      >
-        <button
-          type="button"
-          onClick={async () => {
-            await fetch("/api/auth/logout", {
-              method: "POST",
-            });
-            window.location.href = "/";
-          }}
-          className="profile__logout-button"
-        >
-          Вийти
-        </button>
-      </form>
-    </main>
-  );
+  return <ClientProfile user={user} />;
 }
